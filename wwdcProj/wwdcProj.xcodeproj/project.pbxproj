@@ -15,6 +15,11 @@
 		D4478A2D2060217A0090C8ED /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D4478A2B2060217A0090C8ED /* LaunchScreen.storyboard */; };
 		D4478A35206025D50090C8ED /* GameLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4478A34206025D50090C8ED /* GameLayer.swift */; };
 		D4478A37206025E20090C8ED /* HudLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4478A36206025E20090C8ED /* HudLayer.swift */; };
+		D4478A3B20617BD90090C8ED /* FirstScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4478A3A20617BD90090C8ED /* FirstScene.swift */; };
+		D4478A3D20617C250090C8ED /* SecondScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4478A3C20617C250090C8ED /* SecondScene.swift */; };
+		D4478A3F2062DC880090C8ED /* InstructionScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4478A3E2062DC880090C8ED /* InstructionScene.swift */; };
+		D4478A412062DCDA0090C8ED /* GameOverScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4478A402062DCDA0090C8ED /* GameOverScene.swift */; };
+		D4478A432062ECAB0090C8ED /* FirstScreenLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4478A422062ECAB0090C8ED /* FirstScreenLayer.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -28,6 +33,11 @@
 		D4478A2E2060217A0090C8ED /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D4478A34206025D50090C8ED /* GameLayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameLayer.swift; sourceTree = "<group>"; };
 		D4478A36206025E20090C8ED /* HudLayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HudLayer.swift; sourceTree = "<group>"; };
+		D4478A3A20617BD90090C8ED /* FirstScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirstScene.swift; sourceTree = "<group>"; };
+		D4478A3C20617C250090C8ED /* SecondScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecondScene.swift; sourceTree = "<group>"; };
+		D4478A3E2062DC880090C8ED /* InstructionScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InstructionScene.swift; sourceTree = "<group>"; };
+		D4478A402062DCDA0090C8ED /* GameOverScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameOverScene.swift; sourceTree = "<group>"; };
+		D4478A422062ECAB0090C8ED /* FirstScreenLayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirstScreenLayer.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -75,6 +85,7 @@
 		D4478A382060282C0090C8ED /* Layers */ = {
 			isa = PBXGroup;
 			children = (
+				D4478A422062ECAB0090C8ED /* FirstScreenLayer.swift */,
 				D4478A34206025D50090C8ED /* GameLayer.swift */,
 				D4478A36206025E20090C8ED /* HudLayer.swift */,
 			);
@@ -84,7 +95,11 @@
 		D4478A39206028400090C8ED /* SCenes */ = {
 			isa = PBXGroup;
 			children = (
+				D4478A3A20617BD90090C8ED /* FirstScene.swift */,
+				D4478A3C20617C250090C8ED /* SecondScene.swift */,
+				D4478A3E2062DC880090C8ED /* InstructionScene.swift */,
 				D4478A222060217A0090C8ED /* GameScene.swift */,
+				D4478A402062DCDA0090C8ED /* GameOverScene.swift */,
 			);
 			path = SCenes;
 			sourceTree = "<group>";
@@ -162,10 +177,15 @@
 			buildActionMask = 2147483647;
 			files = (
 				D4478A232060217A0090C8ED /* GameScene.swift in Sources */,
+				D4478A3F2062DC880090C8ED /* InstructionScene.swift in Sources */,
+				D4478A3B20617BD90090C8ED /* FirstScene.swift in Sources */,
 				D4478A35206025D50090C8ED /* GameLayer.swift in Sources */,
 				D4478A37206025E20090C8ED /* HudLayer.swift in Sources */,
 				D4478A252060217A0090C8ED /* GameViewController.swift in Sources */,
 				D4478A1D2060217A0090C8ED /* AppDelegate.swift in Sources */,
+				D4478A412062DCDA0090C8ED /* GameOverScene.swift in Sources */,
+				D4478A432062ECAB0090C8ED /* FirstScreenLayer.swift in Sources */,
+				D4478A3D20617C250090C8ED /* SecondScene.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

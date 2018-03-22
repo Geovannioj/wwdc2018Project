@@ -59,25 +59,25 @@ class GameScene: SKScene {
         if gameLayer.character.position.x <= bottomLeft.x {
             
             gameLayer.character.position.x = bottomLeft.x
-           // gameLayer.velocity.x = -gameLayer.velocity.x
+           
             gameLayer.velocity.y = 0
         
         } else if gameLayer.character.position.x >= topRight.x {
             
             gameLayer.character.position.x = topRight.x
-            //gameLayer.velocity.x = -gameLayer.velocity.x
+           
             gameLayer.velocity.y = 0
         
         } else if gameLayer.character.position.y <= bottomLeft.y {
         
             gameLayer.character.position.y = bottomLeft.y
-            //gameLayer.velocity.y = -gameLayer.velocity.y
+           
             gameLayer.velocity.y = 0
         
         } else if gameLayer.character.position.y >= topRight.y {
           
             gameLayer.character.position.y = topRight.y
-            //gameLayer.velocity.y = -gameLayer.velocity.y
+           
             gameLayer.velocity.y = 0
         }
     }
@@ -111,11 +111,15 @@ class GameScene: SKScene {
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         
         sceneTouched(touchLocation: (touches.first?.location(in: self))!)
-        lastTouchLocation = (touches.first?.location(in: self))!
+        
+        if (touches.first?.location(in: self))! != lastTouchLocation {
+            lastTouchLocation = (touches.first?.location(in: self))!
+        }
+        
     }
     
     override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
-       // gameLayer.character.position = touches.first!.location(in: self)
+       
         
         sceneTouched(touchLocation: (touches.first?.location(in: self))!)
     }
@@ -130,7 +134,6 @@ class GameScene: SKScene {
     
     
     override func update(_ currentTime: TimeInterval) {
-        // Called before each frame is rendered
         
         updateTimeVariation(currentTime: currentTime)
         gameLayer.moveSprite(sprite: gameLayer.character,
@@ -144,24 +147,11 @@ class GameScene: SKScene {
                 gameLayer.character.position = lastTouchLocation
                 gameLayer.velocity = CGPoint.zero
             } else {
-                //move(sprite: zombie, velocity: velocity)
-                //rotate(sprite: zombie, direction: velocity)
+
             }
         }
         
         boundsCheckZombie()
         
-        
-       // boundsCheckZombie()
-        
-//        if let lastTouchLocation = lastTouchLocation {
-//            let diff = lastTouchLocation - zombie.position
-//            if (diff.length() <= zombieMovePointsPerSec * CGFloat(dt)) {
-//                zombie.position = lastTouchLocation
-//                velocity = CGPointZero
-//            } else {
-//                moveSprite(zombie, velocity: velocity)
-//                rotateSprite(zombie, direction: velocity)
-//            }
     }
 }
