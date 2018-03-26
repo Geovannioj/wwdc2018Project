@@ -12,7 +12,7 @@ import GameplayKit
 
 class GameViewController: UIViewController {
 
-    var gameScene: GameScene!
+    //reference to the firstScene
     var initialScene: FirstScene!
     
     override func viewDidLoad() {

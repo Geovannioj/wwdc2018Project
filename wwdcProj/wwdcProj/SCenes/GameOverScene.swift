@@ -11,6 +11,8 @@ import SpriteKit
 
 class GameOverScene: SKScene {
     
+    var background: SKSpriteNode!
+    
     override init(size: CGSize) {
         super.init(size: size)
     }
@@ -19,11 +21,24 @@ class GameOverScene: SKScene {
         fatalError("init(coder:) has not been implemented")
     }
     
+    func chooseBackGround(won: Bool, size: CGSize) {
+        if won {
+            background = SKSpriteNode(imageNamed: "CongratulationBoard")
+            background.position = CGPoint(x: size.width/2, y: size.height/2)
+            background.zPosition = -10
+            addChild(background)
+        } else {
+            background = SKSpriteNode(imageNamed: "TryAgainBoard")
+            background.position = CGPoint(x: size.width/2, y: size.height/2)
+            background.zPosition = -10
+            addChild(background)
+        }
+        
+    }
     override func didMove(to view: SKView) {
         
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-        
     }
 }

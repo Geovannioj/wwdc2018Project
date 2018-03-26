@@ -64,9 +64,12 @@ class FirstScreenLayer: SKNode {
         
     }
     
+    /**
+     Function that makes the tap button scale animation
+     */
     func animateTapBtn() {
         
-        let scaleAction = SKAction.scale(by: 1.5, duration: 2.0)
+        let scaleAction = SKAction.scale(by: 1.1, duration: 1.0)
         let sequence = SKAction.sequence([scaleAction, scaleAction.reversed()])
         let repeatSequence = SKAction.repeatForever(sequence)
         
@@ -113,12 +116,5 @@ class FirstScreenLayer: SKNode {
             addChild(clouds[index])
             
         }
-    }
-    
-    /**
-     Function to set up the books on the firstScreen
-     */
-    func setBooksUp() {
-        
     }
 }

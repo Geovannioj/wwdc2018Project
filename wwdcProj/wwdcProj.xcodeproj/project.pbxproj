@@ -17,9 +17,13 @@
 		D4478A37206025E20090C8ED /* HudLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4478A36206025E20090C8ED /* HudLayer.swift */; };
 		D4478A3B20617BD90090C8ED /* FirstScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4478A3A20617BD90090C8ED /* FirstScene.swift */; };
 		D4478A3D20617C250090C8ED /* SecondScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4478A3C20617C250090C8ED /* SecondScene.swift */; };
-		D4478A3F2062DC880090C8ED /* InstructionScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4478A3E2062DC880090C8ED /* InstructionScene.swift */; };
 		D4478A412062DCDA0090C8ED /* GameOverScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4478A402062DCDA0090C8ED /* GameOverScene.swift */; };
 		D4478A432062ECAB0090C8ED /* FirstScreenLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4478A422062ECAB0090C8ED /* FirstScreenLayer.swift */; };
+		D455577620696CC700A07280 /* Character.swift in Sources */ = {isa = PBXBuildFile; fileRef = D455577520696CC700A07280 /* Character.swift */; };
+		D455577820696CD000A07280 /* Book.swift in Sources */ = {isa = PBXBuildFile; fileRef = D455577720696CD000A07280 /* Book.swift */; };
+		D455577B2069702600A07280 /* GameManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D455577A2069702600A07280 /* GameManager.swift */; };
+		D4F0A62A2065A0D9004451C4 /* GameSceneExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4F0A6292065A0D9004451C4 /* GameSceneExtension.swift */; };
+		D4F0A62D2065A427004451C4 /* Enum.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4F0A62C2065A427004451C4 /* Enum.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -35,9 +39,13 @@
 		D4478A36206025E20090C8ED /* HudLayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HudLayer.swift; sourceTree = "<group>"; };
 		D4478A3A20617BD90090C8ED /* FirstScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirstScene.swift; sourceTree = "<group>"; };
 		D4478A3C20617C250090C8ED /* SecondScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecondScene.swift; sourceTree = "<group>"; };
-		D4478A3E2062DC880090C8ED /* InstructionScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InstructionScene.swift; sourceTree = "<group>"; };
 		D4478A402062DCDA0090C8ED /* GameOverScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameOverScene.swift; sourceTree = "<group>"; };
 		D4478A422062ECAB0090C8ED /* FirstScreenLayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirstScreenLayer.swift; sourceTree = "<group>"; };
+		D455577520696CC700A07280 /* Character.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Character.swift; sourceTree = "<group>"; };
+		D455577720696CD000A07280 /* Book.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Book.swift; sourceTree = "<group>"; };
+		D455577A2069702600A07280 /* GameManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameManager.swift; sourceTree = "<group>"; };
+		D4F0A6292065A0D9004451C4 /* GameSceneExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameSceneExtension.swift; sourceTree = "<group>"; };
+		D4F0A62C2065A427004451C4 /* Enum.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Enum.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -70,8 +78,11 @@
 		D4478A1B2060217A0090C8ED /* wwdcProj */ = {
 			isa = PBXGroup;
 			children = (
+				D45557792069701800A07280 /* Managers */,
 				D4478A1C2060217A0090C8ED /* AppDelegate.swift */,
 				D4478A242060217A0090C8ED /* GameViewController.swift */,
+				D4F0A62C2065A427004451C4 /* Enum.swift */,
+				D455577420696CB200A07280 /* Entities */,
 				D4478A39206028400090C8ED /* SCenes */,
 				D4478A382060282C0090C8ED /* Layers */,
 				D4478A262060217A0090C8ED /* Main.storyboard */,
@@ -95,13 +106,38 @@
 		D4478A39206028400090C8ED /* SCenes */ = {
 			isa = PBXGroup;
 			children = (
+				D4F0A62B2065A11B004451C4 /* GameScene */,
 				D4478A3A20617BD90090C8ED /* FirstScene.swift */,
 				D4478A3C20617C250090C8ED /* SecondScene.swift */,
-				D4478A3E2062DC880090C8ED /* InstructionScene.swift */,
-				D4478A222060217A0090C8ED /* GameScene.swift */,
 				D4478A402062DCDA0090C8ED /* GameOverScene.swift */,
 			);
 			path = SCenes;
+			sourceTree = "<group>";
+		};
+		D455577420696CB200A07280 /* Entities */ = {
+			isa = PBXGroup;
+			children = (
+				D455577520696CC700A07280 /* Character.swift */,
+				D455577720696CD000A07280 /* Book.swift */,
+			);
+			path = Entities;
+			sourceTree = "<group>";
+		};
+		D45557792069701800A07280 /* Managers */ = {
+			isa = PBXGroup;
+			children = (
+				D455577A2069702600A07280 /* GameManager.swift */,
+			);
+			path = Managers;
+			sourceTree = "<group>";
+		};
+		D4F0A62B2065A11B004451C4 /* GameScene */ = {
+			isa = PBXGroup;
+			children = (
+				D4478A222060217A0090C8ED /* GameScene.swift */,
+				D4F0A6292065A0D9004451C4 /* GameSceneExtension.swift */,
+			);
+			path = GameScene;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -176,13 +212,17 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D455577620696CC700A07280 /* Character.swift in Sources */,
 				D4478A232060217A0090C8ED /* GameScene.swift in Sources */,
-				D4478A3F2062DC880090C8ED /* InstructionScene.swift in Sources */,
+				D455577820696CD000A07280 /* Book.swift in Sources */,
+				D4F0A62D2065A427004451C4 /* Enum.swift in Sources */,
+				D455577B2069702600A07280 /* GameManager.swift in Sources */,
 				D4478A3B20617BD90090C8ED /* FirstScene.swift in Sources */,
 				D4478A35206025D50090C8ED /* GameLayer.swift in Sources */,
 				D4478A37206025E20090C8ED /* HudLayer.swift in Sources */,
 				D4478A252060217A0090C8ED /* GameViewController.swift in Sources */,
 				D4478A1D2060217A0090C8ED /* AppDelegate.swift in Sources */,
+				D4F0A62A2065A0D9004451C4 /* GameSceneExtension.swift in Sources */,
 				D4478A412062DCDA0090C8ED /* GameOverScene.swift in Sources */,
 				D4478A432062ECAB0090C8ED /* FirstScreenLayer.swift in Sources */,
 				D4478A3D20617C250090C8ED /* SecondScene.swift in Sources */,
