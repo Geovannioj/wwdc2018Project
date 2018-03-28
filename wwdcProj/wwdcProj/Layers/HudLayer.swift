@@ -18,10 +18,12 @@ class HudLayer: SKNode {
     
     var timeLabel: SKLabelNode!
     var countDownLabel: SKLabelNode!
+    var startLabel: SKLabelNode!
     
     init(size: CGSize) {
         super.init()
         setUpAllLabels(size: size)
+        animateStartLabel()
         startTimer()
     }
     
@@ -45,6 +47,25 @@ class HudLayer: SKNode {
         addChild(scoreLabel)
     }
     
+    func setStartLabel(size: CGSize) {
+        startLabel = SKLabelNode(fontNamed: "Chalkduster")
+        startLabel.text = "GO!"
+        startLabel.fontColor = UIColor.white
+        startLabel.fontSize = 60.0
+        startLabel.position = CGPoint(x: size.width * 0.5, y: size.height * 0.5)
+        addChild(startLabel)
+    }
+    func animateStartLabel() {
+        let action = SKAction.scale(by: 1.2, duration: 2.0)
+        let removeAction = SKAction.run {
+            self.startLabel.removeFromParent()
+        }
+        
+        let sequence = SKAction.sequence([action,removeAction])
+        startLabel.run(sequence)
+    
+        
+    }
     func setResultScore(size: CGSize) {
         resultScore = SKLabelNode(fontNamed: "Chalkduster")
         resultScore.text = String(GameManager.shared.score)
@@ -77,7 +98,7 @@ class HudLayer: SKNode {
     func setUpAllLabels(size: CGSize) {
         setScoreLabel(size: size)
         setResultScore(size: size)
-        
+        setStartLabel(size: size)
         setTimeLabel(size: size)
         setCountDownLabel(size: size)
         

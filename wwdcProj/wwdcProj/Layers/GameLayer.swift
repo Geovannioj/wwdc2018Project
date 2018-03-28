@@ -15,7 +15,7 @@ class GameLayer: SKNode {
     var character: SKSpriteNode!
     var lastCallToUpdate: TimeInterval = 0
     var timeVariation: TimeInterval = 0
-    var movePointsPerSecond: CGFloat = 150.0
+    var movePointsPerSecond: CGFloat = 200.0
     var velocity = CGPoint.zero
     var characterMove: SKAction!
     var screenSize: CGSize!
@@ -30,7 +30,7 @@ class GameLayer: SKNode {
         //self.setBricks(size: size)
         createBooksForever()
         setUpBackground(size: size)
-        
+    
      
     }
     
@@ -132,19 +132,19 @@ class GameLayer: SKNode {
         book.physicsBody?.contactTestBitMask = UInt32(EnumBitmaskCategory.character.rawValue)
         addChild(book)
         
-        let delayToCreateANewBook = SKAction.wait(forDuration: 1.0)
+        
         let fadeIn = SKAction.fadeIn(withDuration: 1.0)
         let bookDuration = SKAction.wait(forDuration: 1.0)
         let fadeout = SKAction.fadeOut(withDuration: 1.0)
         let remove = SKAction.removeFromParent()
-        let sequence = SKAction.sequence([delayToCreateANewBook,fadeIn, bookDuration, fadeout, remove])
+        let sequence = SKAction.sequence([fadeIn, bookDuration, fadeout, remove])
         
         rotateBookAction(node: book)
         book.run(sequence)
     }
     
     func createBooksForever() {
-        let wait = SKAction.wait(forDuration: TimeInterval(randomNumber(inRange: 1...3)))
+        let wait = SKAction.wait(forDuration: TimeInterval(randomNumber(inRange: 1...2)))
         let createBookAction = SKAction.run {
             self.createBook()
         }
@@ -207,32 +207,37 @@ class GameLayer: SKNode {
     }
     
     func showAchievement(result: Int, size: CGSize) {
-        let achievement = SKLabelNode(fontNamed: "Chalkduster")
-        achievement.fontColor = UIColor.white
-        achievement.fontSize = 40.0
-        achievement.zPosition = 10
-        achievement.position = CGPoint(x: size.width * 0.5, y: size.height * 0.5)
-        
+        let uiKit = "UIKitLbl"
+        let spriteKit = "SpriteKitLbl"
+        let sceneKit = "SceneKitLbl"
         if result == 10 {
             // learned UIKit
-            achievement.text = "I've just learned\n UIKit"
+            showCongratulationSprite(nodeName: uiKit, size: size)
+            
         } else if result == 20{
             //learned SpriteKit
-            achievement.text = "I've just learned\n SpriteKit"
+            showCongratulationSprite(nodeName: spriteKit, size: size)
         } else if result == 30 {
             //learned SceneKit
-            achievement.text = "I've just learned\n SceneKit"
+            showCongratulationSprite(nodeName: sceneKit, size: size)
         }
         
-        addChild(achievement)
+    }
+    
+    func showCongratulationSprite(nodeName: String, size: CGSize) {
+        let textNode = SKSpriteNode(imageNamed: nodeName)
+        textNode.position = CGPoint(x: size.width/2, y: size.height/2)
         
         let scaleAction = SKAction.scale(by: 1.1, duration: 1.0)
         let remove = SKAction.run {
-            achievement.removeFromParent()
+            textNode.removeFromParent()
         }
         let sequence = SKAction.sequence([scaleAction,remove])
-        achievement.run(sequence)
+        addChild(textNode)
+        
+        textNode.run(sequence)
     }
+    
     func updateTimeVariation(currentTime: TimeInterval) {
         if lastCallToUpdate > 0 {
             timeVariation = currentTime - lastCallToUpdate

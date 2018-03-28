@@ -18,6 +18,7 @@ class SecondScene: SKScene {
     private var textNode: SKLabelNode!
     private var playBtn: SKSpriteNode!
     private var sentence2Node: SKSpriteNode!
+    private var nextBtn: SKSpriteNode!
     var numberOfPhrase = 1
     
     override init(size: CGSize) {
@@ -27,6 +28,7 @@ class SecondScene: SKScene {
         setTheBalloonUp(size: size)
         setTextToTheBalloon()
        // setTextActions()
+        setNextBtn()
         setPlayBtn()
   
     }
@@ -51,9 +53,16 @@ class SecondScene: SKScene {
         playBtn.zPosition = 5
         playBtn.name = "playBtn"
         addChild(playBtn)
-        //playBtn.isHidden = true
+        playBtn.isHidden = true
     }
-    
+    func setNextBtn() {
+        nextBtn = SKSpriteNode(imageNamed: "NextBtn")
+        nextBtn.position = CGPoint(x: size.width * 0.9, y: size.height * 0.1)
+        nextBtn.zPosition = 10
+        nextBtn.name = "nextBtn"
+        addChild(nextBtn)
+        
+    }
 
     /**
      Function that sets the  balloon's text
@@ -102,10 +111,10 @@ class SecondScene: SKScene {
      Function that makes the transition of the initial scene to the GameScene
      */
     func changeScene() {
-        let gameScene = GameScene(size:self.size)
-        gameScene.scaleMode = scaleMode
+        let rocktScene = RocketScene(size:self.size)
+        rocktScene.scaleMode = scaleMode
         let showScene = SKTransition.doorway(withDuration: 1.5)
-        self.view?.presentScene(gameScene, transition: showScene)
+        self.view?.presentScene(rocktScene, transition: showScene)
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
@@ -115,7 +124,7 @@ class SecondScene: SKScene {
             
             if node.name == "playBtn" {
                 changeScene()
-            } else {
+            } else if node.name == "nextBtn" {
                 numberOfPhrase += 1
                 changeSentence()
 
@@ -126,8 +135,8 @@ class SecondScene: SKScene {
     
     func changeSentence() {
         //actions
-        let changeTxtAction = SKAction.fadeOut(withDuration: 1.0)
-        let fadeInAction = SKAction.fadeIn(withDuration: 1.0)
+        let changeTxtAction = SKAction.fadeOut(withDuration: 0.5)
+        let fadeInAction = SKAction.fadeIn(withDuration: 0.5)
         
         //actions to change the texts
         let sentence2Block = SKAction.run {
@@ -149,7 +158,7 @@ class SecondScene: SKScene {
         }
         let sentence6Block = SKAction.run {
             //self.textNode.text = "And by consequence of this I got accepted\nin a federal university, something that\nI never thought it was even possible!"
-            self.textNode.text = "your future is in your hands,\n education is something\n that cannot be tanken from you"
+            self.textNode.text = "your future is in your hands,\n education is something\n that cannot be taken from you"
         }
         let sentence7Block = SKAction.run {
             //self.textNode.text = "And then I was accepted at \nApple Developer Academy"
@@ -157,26 +166,29 @@ class SecondScene: SKScene {
         }
         let sentence8Block = SKAction.run {
             //self.textNode.text = "And the main thing is: if you study hard\n you can get great things in your life!\n, never give up on your dreams!\n chase them"
-            self.textNode.text = "Now I need your help!\n get the books on the screen,\n so that I can study Apple's framewoks\n and become a developer!"
+            self.textNode.text = "Now I need your help!"
         }
         let sentence9Block = SKAction.run {
-            self.textNode.text = "As I said before, \nstudying can change lives,\n help me."
+            
+            self.textNode.text = "Get the books on the screen,\nso that I can study\n Apple's framewoks and\n become a developer!"
         }
         let sentence10Block = SKAction.run {
-            self.textNode.text = "One thing I didn't say, \nyou'll need to go outer space"
+            
+            self.textNode.text = "\nEach 10 books you get\n I learn a frameWork!"
         }
         let sentence11Block = SKAction.run {
-            self.textNode.text = "Let's goo!"
+            
+            self.textNode.text = "As I said before, \nstudying can change lives,\n help me."
         }
-//        let sentence12Block = SKAction.run {
-//            self.textNode.text = "Study, and work to be accepted for \nWWDC!"
-//        }
-//        let sentence13Block = SKAction.run {
-//            self.textNode.text = "Help me to get the books to study\n to make and submit my Playground"
-//        }
-//        let sentence14Block = SKAction.run {
-//            self.textNode.text = "Tap on the screen to guide \nme to get the books"
-//        }
+        let sentence12Block = SKAction.run {
+            self.textNode.text = "Tap on the screen to guide \nme to towards the books"
+        }
+        let sentence13Block = SKAction.run {
+            self.textNode.text = "One thing I didn't say... \nthis adventure\n will be in space!"
+        }
+        let sentence14Block = SKAction.run {
+            self.textNode.text = "Let's go!"
+        }
         
         
         switch numberOfPhrase {
@@ -251,8 +263,34 @@ class SecondScene: SKScene {
                                              sentence11Block,
                                              fadeInAction])
             self.textNode.run(sequence)
+            break
+        case 12:
+            let sequence = SKAction.sequence([changeTxtAction,
+                                              sentence12Block,
+                                              fadeInAction])
+            self.textNode.run(sequence)
+            break
+        case 13:
+            let sequence = SKAction.sequence([changeTxtAction,
+                                              sentence13Block,
+                                              fadeInAction])
+            self.textNode.run(sequence)
+            break
+        case 14:
+            let sequence = SKAction.sequence([changeTxtAction,
+                                              sentence14Block,
+                                              fadeInAction])
+            self.textNode.run(sequence)
+            break
         default: break
             
+        }
+    }
+    
+    override func update(_ currentTime: TimeInterval) {
+        if numberOfPhrase == 14 {
+            playBtn.isHidden = false
+            nextBtn.isHidden = true
         }
     }
     

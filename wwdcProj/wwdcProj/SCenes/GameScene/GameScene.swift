@@ -57,6 +57,7 @@ class GameScene: SKScene {
     
     func addLayersToTheScene() {
         addChild(gameLayer)
+        
         addChild(hudlayer)
         
     }
@@ -100,13 +101,16 @@ class GameScene: SKScene {
     
     func checkGameOver(countDown: Int, score: Int) {
         if countDown == 0 {
-            if score > 30 {
+            if score >= 30 {
                 print("Parabéns você venceu")
                 GameManager.shared.won = true
                 gameOverScene.chooseBackGround(won: GameManager.shared.won,
                                                size: size)
                 let showScene = SKTransition.doorway(withDuration: 1.5)
                 self.view?.presentScene(gameOverScene, transition: showScene)
+                GameManager.shared.restartResults()
+                self.removeFromParent()
+                
                 
             } else {
                 print("Não foi hoje, tente mais!")
@@ -115,6 +119,8 @@ class GameScene: SKScene {
                                                size: size)
                 let showScene = SKTransition.doorway(withDuration: 1.5)
                 self.view?.presentScene(gameOverScene, transition: showScene)
+                GameManager.shared.restartResults()
+                self.removeFromParent()
             }
             
         }

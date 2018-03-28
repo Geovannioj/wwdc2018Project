@@ -32,4 +32,10 @@ class GameManager {
         let repeatTimerActionForever = SKAction.repeatForever(sequence)
         return repeatTimerActionForever
     }
+    
+    func restartResults() {
+        self.score = 0
+        self.countDown = 60
+        self.won = false
+    }
 }
