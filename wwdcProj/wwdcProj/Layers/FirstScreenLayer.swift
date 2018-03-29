@@ -40,6 +40,7 @@ class FirstScreenLayer: SKNode {
     
     /**
      Function that sets up the background image of the main scene
+     - parameter size: size of the screen
      */
     
     func setUpbackgroundImg(size: CGSize) {
@@ -79,6 +80,7 @@ class FirstScreenLayer: SKNode {
     
     /**
      Function that sets up the clounds in the firstScreen
+     - parameter size: size of the screen
      */
     func setUpClouds(size: CGSize) {
         

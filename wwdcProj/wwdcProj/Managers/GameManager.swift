@@ -40,7 +40,7 @@ class GameManager {
     }
     
     func playTapSound(node: SKNode) {
-        let playSoundAction = SKAction.playSoundFileNamed("TapSound.mp3", waitForCompletion: true)
+        let playSoundAction = SKAction.playSoundFileNamed("Tap2.mp3", waitForCompletion: true)
         node.run(playSoundAction)
     }
     

@@ -12,25 +12,26 @@ import SpriteKit
 class SecondScene: SKScene {
     
     //MARK:- Properties
-    private var character: SKSpriteNode!
-    private var textBalloon: SKSpriteNode!
-    private var background: SKSpriteNode!
-    private var textNode: SKLabelNode!
-    private var playBtn: SKSpriteNode!
-    private var sentence2Node: SKSpriteNode!
-    private var nextBtn: SKSpriteNode!
+    var character: SKSpriteNode!
+    var textBalloon: SKSpriteNode!
+    var background: SKSpriteNode!
+    var textNode: SKLabelNode!
+    var playBtn: SKSpriteNode!
+    var sentence2Node: SKSpriteNode!
+    var nextBtn: SKSpriteNode!
     var numberOfPhrase = 1
+    let backGroundMusicname = "English_Country_Garden.mp3"
     
+    //MARK:- Constructor
     override init(size: CGSize) {
         super.init(size: size)
         setBackgroundUP(size: size)
         setCharacterUp(size: size)
         setTheBalloonUp(size: size)
         setTextToTheBalloon()
-       // setTextActions()
         setNextBtn()
         setPlayBtn()
-        GameManager.shared.startMusic(musicName: "English_Country_Garden.mp3", node: self)
+        GameManager.shared.startMusic(musicName: backGroundMusicname, node: self)
   
     }
     
@@ -39,11 +40,6 @@ class SecondScene: SKScene {
     }
     
     //MARK:- Class methods
-    
-    override func didMove(to view: SKView) {
-
-        
-    }
     
     /**
      Function that sets up the button to start the game
@@ -56,6 +52,9 @@ class SecondScene: SKScene {
         addChild(playBtn)
         playBtn.isHidden = true
     }
+    /**
+     Function to set the button that changes the sentence
+     */
     func setNextBtn() {
         nextBtn = SKSpriteNode(imageNamed: "NextBtn")
         nextBtn.position = CGPoint(x: size.width * 0.9, y: size.height * 0.1)
@@ -82,6 +81,7 @@ class SecondScene: SKScene {
     
     /**
      Function that sets the  balloon
+     - parameter size: size of the screen
      */
     func setTheBalloonUp(size: CGSize) {
         textBalloon = SKSpriteNode(imageNamed: "balloonTxt")
@@ -92,6 +92,7 @@ class SecondScene: SKScene {
     
     /**
      Function to set the background of the scene
+     - parameter size: size of the screen
      */
     func setBackgroundUP(size: CGSize) {
         background = SKSpriteNode(imageNamed: "StoryBackground")
@@ -100,7 +101,10 @@ class SecondScene: SKScene {
         addChild(background)
     }
     
-    /**Function that sets the character on the screen*/
+    /**
+     Function that sets the character on the screen
+     - parameter size: size of the screen
+     */
     func setCharacterUp(size: CGSize) {
         
         character = SKSpriteNode(imageNamed: "SpeakingCharacter")
@@ -109,7 +113,7 @@ class SecondScene: SKScene {
     }
     
     /**
-     Function that makes the transition of the initial scene to the GameScene
+     Function that makes the transition to the GameScene
      */
     func changeScene() {
         let rocktScene = RocketScene(size:self.size)
@@ -136,7 +140,9 @@ class SecondScene: SKScene {
         }
         
     }
-    
+    /**
+     Function responsable of changing the sentences of the talking.
+     */
     func changeSentence() {
         //actions
         let changeTxtAction = SKAction.fadeOut(withDuration: 0.5)
@@ -144,32 +150,31 @@ class SecondScene: SKScene {
         
         //actions to change the texts
         let sentence2Block = SKAction.run {
-            //self.textNode.text = "I grew up on a family that didn`t have \ngood financial condition. "
             self.textNode.text = "Did you know that \nstudying is something that can\n change someone's life?"
         }
         let sentence3Block = SKAction.run {
-           // self.textNode.text = "My mom learned how to read \nby herself, because she needed \nto take the right bus to go to work,\n her step mother never let \nher go to school"
+        
             self.textNode.text = "It has already changed mine,\nand the more you study,\nmore skills you'll have"
         }
         let sentence4Block = SKAction.run {
-            //self.textNode.text = "So she always told me to study hard,\nbecause  she wanted me to have a\n better future than hers"
+        
             self.textNode.text = "So even if you face\n tough challenges in life,\n never give up!!"
         }
         
         let sentence5Block = SKAction.run {
-           // self.textNode.text = "I’ve followed my mom’s instruction,\nI have always studied hard, and learned\ndifferent things"
+        
             self.textNode.text = "Keep studying and you'll\n be rewarded in the future"
         }
         let sentence6Block = SKAction.run {
-            //self.textNode.text = "And by consequence of this I got accepted\nin a federal university, something that\nI never thought it was even possible!"
+        
             self.textNode.text = "your future is in your hands,\n education is something\n that cannot be taken from you"
         }
         let sentence7Block = SKAction.run {
-            //self.textNode.text = "And then I was accepted at \nApple Developer Academy"
+        
             self.textNode.text = "The more you study, \nthe more you realize that there are\n many more things to be known"
         }
         let sentence8Block = SKAction.run {
-            //self.textNode.text = "And the main thing is: if you study hard\n you can get great things in your life!\n, never give up on your dreams!\n chase them"
+        
             self.textNode.text = "Now I need your help!"
         }
         let sentence9Block = SKAction.run {

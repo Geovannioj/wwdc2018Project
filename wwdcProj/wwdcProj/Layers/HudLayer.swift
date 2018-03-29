@@ -15,10 +15,11 @@ class HudLayer: SKNode {
     
     var scoreLabel: SKLabelNode!
     var resultScore: SKLabelNode!
-    
     var timeLabel: SKLabelNode!
     var countDownLabel: SKLabelNode!
     var startLabel: SKLabelNode!
+    
+    //MARK:- Constructor
     
     init(size: CGSize) {
         super.init()
@@ -31,6 +32,7 @@ class HudLayer: SKNode {
         fatalError("init(coder:) has not been implemented")
     }
     
+    //MARK:- timer init
     func startTimer() {
         let startTimerAction = GameManager.shared.TimerWithActions()
         self.run(startTimerAction)

@@ -11,10 +11,12 @@ import SpriteKit
 
 class GameOverScene: SKScene {
     
+    //MARK:- Properties
     var background: SKSpriteNode!
     var playAgainBtn: SKSpriteNode!
     var restartEveryThing: SKSpriteNode!
     
+    //MARK:- Constructor
     override init(size: CGSize) {
         super.init(size: size)
         setPlayAgainBtn()
@@ -25,6 +27,13 @@ class GameOverScene: SKScene {
         fatalError("init(coder:) has not been implemented")
     }
     
+    //MARK:- Class methods
+    
+    /**
+     Function to choose if it is needed to show the win or lose gameover page
+     - parameter won: bolean that shows if the game was won or not
+     - parameter size: Size of the screen
+     */
     func chooseBackGround(won: Bool, size: CGSize) {
         if won {
             background = SKSpriteNode(imageNamed: "CongratulationBoard")
@@ -42,12 +51,19 @@ class GameOverScene: SKScene {
         
     }
     
+    /**
+     Function that puts the play again button on the screen
+     */
     func setPlayAgainBtn() {
         playAgainBtn = SKSpriteNode(imageNamed: "PlayAgain")
         playAgainBtn.position = CGPoint(x: size.width * 0.1, y: size.height * 0.1)
         playAgainBtn.name = "playAgain"
         addChild(playAgainBtn)
     }
+    
+    /**
+     Function that puts the restart button on the screen
+     */
     func setRestartEverything() {
         restartEveryThing = SKSpriteNode(imageNamed: "GoToTalking")
         restartEveryThing.position = CGPoint(x: size.width * 0.8, y: size.height * 0.1)
@@ -55,9 +71,9 @@ class GameOverScene: SKScene {
         addChild(restartEveryThing)
     }
     
-    override func didMove(to view: SKView) {
-        
-    }
+    /**
+     Function that does the transition to the second Screen( the talking screen)
+     */
     func goToTalkingScene() {
         let secondScene = SecondScene(size:self.size)
         secondScene.scaleMode = scaleMode
@@ -66,6 +82,9 @@ class GameOverScene: SKScene {
         self.removeFromParent()
     }
     
+    /**
+     Function that does the transition to the GameScene
+     */
     func playAgainScene() {
         let playScene = GameScene(size:self.size)
         playScene.scaleMode = scaleMode
@@ -81,8 +100,10 @@ class GameOverScene: SKScene {
             
             if node.name == "playAgain" {
                 playAgainScene()
+                GameManager.shared.playTapSound(node: self)
             } else if node.name == "restartEverything" {
                 goToTalkingScene()
+                GameManager.shared.playTapSound(node: self)
             }
         }
     }

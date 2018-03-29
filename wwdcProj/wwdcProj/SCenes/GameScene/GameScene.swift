@@ -18,14 +18,14 @@ class GameScene: SKScene {
     var gameOverScene: GameOverScene!
     var lastTouchLocation: CGPoint?
     var musicNode: SKNode!
+    let backGroundMusicName = "backgroundSound.mp3"
     
-    
+    //MARK:- Constructor
     override init(size: CGSize) {
         super.init(size: size)
-        //setting up the layers
         self.setUpLayers(size: size)
         self.setUpGameScenePhysics()
-        GameManager.shared.startMusic(musicName: "backgroundSound.mp3", node: gameLayer.character)
+        GameManager.shared.startMusic(musicName: backGroundMusicName, node: gameLayer.character)
 
 
     }
@@ -36,16 +36,19 @@ class GameScene: SKScene {
     
     //MARK:- Class methods
 
-    override func didMove(to view: SKView) {
-        
-        
-    }
+    /**
+     Function that sets up the scene's physic
+     */
     func setUpGameScenePhysics() {
         self.physicsWorld.contactDelegate = self
         self.physicsWorld.gravity = CGVector(dx: 0, dy: 0  )
         self.physicsBody = SKPhysicsBody(edgeLoopFrom: self.frame)
     }
     
+    /**
+     Function that sets up the layers tha are needed on the GameScene class
+     - parameter size: screen's size
+     */
     func setUpLayers(size: CGSize) {
         self.gameLayer = GameLayer(size: size)
         self.hudlayer = HudLayer(size: size)
@@ -55,13 +58,18 @@ class GameScene: SKScene {
         
     }
     
+    /**
+     Addition of the layers on the screen
+     */
     func addLayersToTheScene() {
         addChild(gameLayer)
-        
         addChild(hudlayer)
         
     }
     
+    /**
+     Function that connects the function MoveTowardTap of the gameLayer with the gameScene
+     */
     func sceneTouched(touchLocation: CGPoint) {
         gameLayer.moveTowardTap(node: gameLayer.character, location: touchLocation)
     }
@@ -84,6 +92,7 @@ class GameScene: SKScene {
     }
     
     
+    //MARK:- TO do
     func movimentationFunction() {
         if let lastTouchLocation = lastTouchLocation {
             let diff = CGPoint(x:lastTouchLocation.x - gameLayer.character.position.x,
@@ -99,39 +108,46 @@ class GameScene: SKScene {
         }
     }
     
-    func checkGameOver(countDown: Int, score: Int) {
-        //if countDown == 0 {
-            if countDown >= 0 && score >= 30   {
-                print("Parabéns você venceu")
-                GameManager.shared.won = true
-                gameOverScene.chooseBackGround(won: GameManager.shared.won,
-                                               size: size)
-                
-                GameManager.shared.restartResults()
-                gameLayer.character.removeAllChildren()
-                self.removeFromParent()
-                let showScene = SKTransition.doorway(withDuration: 1.5)
-                self.view?.presentScene(gameOverScene, transition: showScene)
-                
-            } else if countDown == 0 && score < 30{
-                print("Não foi hoje, tente mais!")
-                GameManager.shared.won = false
-                gameOverScene.chooseBackGround(won: GameManager.shared.won,
-                                               size: size)
-                let showScene = SKTransition.doorway(withDuration: 1.5)
-                gameLayer.character.removeAllChildren()
-                GameManager.shared.restartResults()
-                self.removeFromParent()
-                self.view?.presentScene(gameOverScene, transition: showScene)
-                
-            }
-            
-       // }
+    /**
+     Function responsable to set gameover, removing the nodes
+     and restarting the countdown and game resulta
+     - parameter won: boolean tha indicates if the game was won or not
+     */
+    func setGameOverParameters(won: Bool) {
+        GameManager.shared.won = won
+        gameOverScene.chooseBackGround(won: GameManager.shared.won,
+                                       size: size)
+        
+        GameManager.shared.restartResults()
+        gameLayer.character.removeAllChildren()
+        self.removeFromParent()
+        let showScene = SKTransition.doorway(withDuration: 1.5)
+        self.view?.presentScene(gameOverScene, transition: showScene)
     }
     
-    func checkBooksGotten(result: Int) {
-        
+    /**
+     Function to check if it is gameover or not
+     - parameter countDown: the remain time
+     - parameter score: amount of books gotten
+     */
+    func checkGameOver(countDown: Int, score: Int) {
+            if countDown >= 0 && score >= 30   {
+                let waitToShowLastFrameworkLearned = SKAction.wait(forDuration: 1.5)
+                let changeSceneBlock = SKAction.run({
+                    self.setGameOverParameters(won: true)
+                })
+                
+                let sequence = SKAction.sequence([waitToShowLastFrameworkLearned, changeSceneBlock])
+                self.run(sequence)
+                
+                
+            } else if countDown == 0 && score < 30{
+                
+                setGameOverParameters(won: false)
+                
+            }
     }
+    
     override func update(_ currentTime: TimeInterval) {
         
         gameLayer.updateTimeVariation(currentTime: currentTime)
