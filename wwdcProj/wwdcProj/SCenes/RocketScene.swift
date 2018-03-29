@@ -112,6 +112,7 @@ class RocketScene: SKScene {
             self.textLabel.text = String(self.countDown)
             if self.countDown > 0 {
                 self.countDown -= 1
+                self.playCountDownBip()
             } else {
                 self.textLabel.removeFromParent()
                 self.launchRocket()
@@ -130,5 +131,9 @@ class RocketScene: SKScene {
     func playRocketSound() {
         let actionSound = SKAction.playSoundFileNamed("RocketLaunch.mp3", waitForCompletion: true)
         rocket.run(actionSound)
+    }
+    func playCountDownBip() {
+        let bipAction = SKAction.playSoundFileNamed("Bip.mp3", waitForCompletion: true)
+        self.run(bipAction)
     }
 }

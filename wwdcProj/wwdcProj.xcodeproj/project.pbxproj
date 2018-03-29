@@ -33,6 +33,7 @@
 		D4F4D5F9206D7857006DC308 /* GrabbedABook.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D4F4D5F8206D7857006DC308 /* GrabbedABook.mp3 */; };
 		D4F4D5FD206D81C3006DC308 /* TapSound2.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D4F4D5FC206D81C3006DC308 /* TapSound2.mp3 */; };
 		D4F4D5FF206D832F006DC308 /* Tap2.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D4F4D5FE206D832F006DC308 /* Tap2.mp3 */; };
+		D4F4D605206D95E0006DC308 /* Bip.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D4F4D604206D95E0006DC308 /* Bip.mp3 */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -64,6 +65,7 @@
 		D4F4D5F8206D7857006DC308 /* GrabbedABook.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = GrabbedABook.mp3; sourceTree = "<group>"; };
 		D4F4D5FC206D81C3006DC308 /* TapSound2.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = TapSound2.mp3; sourceTree = "<group>"; };
 		D4F4D5FE206D832F006DC308 /* Tap2.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = Tap2.mp3; sourceTree = "<group>"; };
+		D4F4D604206D95E0006DC308 /* Bip.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = Bip.mp3; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -145,6 +147,7 @@
 		D4B37E21206C35A900A9277F /* Sounds */ = {
 			isa = PBXGroup;
 			children = (
+				D4F4D604206D95E0006DC308 /* Bip.mp3 */,
 				D4F4D5F8206D7857006DC308 /* GrabbedABook.mp3 */,
 				D4F4D5F4206D75F9006DC308 /* backgroundSound.mp3 */,
 				D4F4D5ED206D75D6006DC308 /* English_Country_Garden.mp3 */,
@@ -228,6 +231,7 @@
 			files = (
 				D4F4D5F1206D75D7006DC308 /* English_Country_Garden.mp3 in Resources */,
 				D4478A282060217A0090C8ED /* Main.storyboard in Resources */,
+				D4F4D605206D95E0006DC308 /* Bip.mp3 in Resources */,
 				D4F4D5F2206D75D7006DC308 /* Mr_Tea.mp3 in Resources */,
 				D4B37E1E206C2EC500A9277F /* RocketLaunch.mp3 in Resources */,
 				D4F4D5F9206D7857006DC308 /* GrabbedABook.mp3 in Resources */,
