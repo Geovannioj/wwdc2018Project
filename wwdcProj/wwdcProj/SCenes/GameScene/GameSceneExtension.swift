@@ -15,6 +15,7 @@ extension GameScene: SKPhysicsContactDelegate {
         let characterNodeABadNodeB = contact.bodyA.categoryBitMask == EnumBitmaskCategory.character.rawValue && contact.bodyB.categoryBitMask == EnumBitmaskCategory.badItem.rawValue
         
         if characterNodeABookNodeB {
+            gameLayer.playGrabbedBookSound()
             GameManager.shared.score += 1
             contact.bodyB.node?.removeFromParent()
             print(GameManager.shared.score)

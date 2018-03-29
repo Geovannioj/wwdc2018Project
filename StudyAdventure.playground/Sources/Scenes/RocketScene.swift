@@ -47,7 +47,7 @@ public class RocketScene: SKScene {
         }
         let sequence = SKAction.sequence([action, blockChangeScene])
         rocket.run(sequence)
-        
+        playRocketSound()
     }
     func changeScene() {
         let gameScene = GameScene(size:self.size)
@@ -63,6 +63,10 @@ public class RocketScene: SKScene {
         particle?.targetNode = rocket
         rocket.addChild(particle!)
         
+    }
+    func playRocketSound() {
+        let actionSound = SKAction.playSoundFileNamed("RocketLaunch.mp3", waitForCompletion: true)
+        rocket.run(actionSound)
     }
     
 }

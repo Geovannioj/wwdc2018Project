@@ -38,5 +38,9 @@ public class GameManager {
         self.countDown = 60
         self.won = false
     }
+    func playTapSound(node: SKNode) {
+        let playSoundAction = SKAction.playSoundFileNamed("TapSound.mp3", waitForCompletion: true)
+        node.run(playSoundAction)
+    }
 }
 

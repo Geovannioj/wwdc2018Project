@@ -48,6 +48,7 @@ public class FirstScene: SKScene {
     
     
     override public func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        GameManager.shared.playTapSound(node: self)
         sceneTouched()
     }
 }

@@ -10,11 +10,13 @@ import Foundation
 import SpriteKit
 
 extension GameScene: SKPhysicsContactDelegate {
+
     public func didBegin(_ contact: SKPhysicsContact) {
         let characterNodeABookNodeB = contact.bodyA.categoryBitMask == EnumBitmaskCategory.character.rawValue && contact.bodyB.categoryBitMask == EnumBitmaskCategory.book.rawValue
         let characterNodeABadNodeB = contact.bodyA.categoryBitMask == EnumBitmaskCategory.character.rawValue && contact.bodyB.categoryBitMask == EnumBitmaskCategory.badItem.rawValue
         
         if characterNodeABookNodeB {
+            gameLayer.playGrabbedBookSound()
             GameManager.shared.score += 1
             contact.bodyB.node?.removeFromParent()
             print(GameManager.shared.score)

@@ -18,7 +18,7 @@ class FirstScene: SKScene {
         super.init(size: size)
        
         self.setUpLayer(size: size)
-        
+        GameManager.shared.startMusic(musicName: "Mr_Tea.mp3", node: self)
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -43,11 +43,13 @@ class FirstScene: SKScene {
         let secondScene = SecondScene(size:self.size)
         secondScene.scaleMode = scaleMode
         let showScene = SKTransition.doorway(withDuration: 1.5)
+        self.removeAllChildren()
         self.view?.presentScene(secondScene, transition: showScene)
     }
     
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        GameManager.shared.playTapSound(node: self)
         sceneTouched()
     }
 }

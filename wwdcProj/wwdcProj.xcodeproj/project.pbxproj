@@ -22,8 +22,16 @@
 		D455577B2069702600A07280 /* GameManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D455577A2069702600A07280 /* GameManager.swift */; };
 		D45C93A8206AC02400C0A7B0 /* RocketScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = D45C93A7206AC02400C0A7B0 /* RocketScene.swift */; };
 		D45C93AA206AC9BD00C0A7B0 /* fireParticle.sks in Resources */ = {isa = PBXBuildFile; fileRef = D45C93A9206AC9BD00C0A7B0 /* fireParticle.sks */; };
+		D4B37E1A206C2E9700A9277F /* GrabbedABook.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D4B37E19206C2E9600A9277F /* GrabbedABook.mp3 */; };
+		D4B37E1E206C2EC500A9277F /* RocketLaunch.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D4B37E1D206C2EC400A9277F /* RocketLaunch.mp3 */; };
+		D4B37E20206C2FF000A9277F /* TapSound.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D4B37E1F206C2FF000A9277F /* TapSound.mp3 */; };
 		D4F0A62A2065A0D9004451C4 /* GameSceneExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4F0A6292065A0D9004451C4 /* GameSceneExtension.swift */; };
 		D4F0A62D2065A427004451C4 /* Enum.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4F0A62C2065A427004451C4 /* Enum.swift */; };
+		D4F4D5DF206C8D8C006DC308 /* backgroundSound.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D4F4D5DE206C8D8C006DC308 /* backgroundSound.mp3 */; };
+		D4F4D5E3206C9B3D006DC308 /* Mr_Tea.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D4F4D5E2206C9B3D006DC308 /* Mr_Tea.mp3 */; };
+		D4F4D5E5206C9EEE006DC308 /* It_Happens.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D4F4D5E4206C9EEE006DC308 /* It_Happens.mp3 */; };
+		D4F4D5E7206CA1FA006DC308 /* English_Country_Garden.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D4F4D5E6206CA1FA006DC308 /* English_Country_Garden.mp3 */; };
+		D4F4D5EB206CA8B5006DC308 /* Fond_Memories.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D4F4D5EA206CA8B5006DC308 /* Fond_Memories.mp3 */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -44,8 +52,16 @@
 		D455577A2069702600A07280 /* GameManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameManager.swift; sourceTree = "<group>"; };
 		D45C93A7206AC02400C0A7B0 /* RocketScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RocketScene.swift; sourceTree = "<group>"; };
 		D45C93A9206AC9BD00C0A7B0 /* fireParticle.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = fireParticle.sks; sourceTree = "<group>"; };
+		D4B37E19206C2E9600A9277F /* GrabbedABook.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = GrabbedABook.mp3; sourceTree = "<group>"; };
+		D4B37E1D206C2EC400A9277F /* RocketLaunch.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = RocketLaunch.mp3; sourceTree = "<group>"; };
+		D4B37E1F206C2FF000A9277F /* TapSound.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = TapSound.mp3; sourceTree = "<group>"; };
 		D4F0A6292065A0D9004451C4 /* GameSceneExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameSceneExtension.swift; sourceTree = "<group>"; };
 		D4F0A62C2065A427004451C4 /* Enum.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Enum.swift; sourceTree = "<group>"; };
+		D4F4D5DE206C8D8C006DC308 /* backgroundSound.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = backgroundSound.mp3; sourceTree = "<group>"; };
+		D4F4D5E2206C9B3D006DC308 /* Mr_Tea.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = Mr_Tea.mp3; sourceTree = "<group>"; };
+		D4F4D5E4206C9EEE006DC308 /* It_Happens.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = It_Happens.mp3; sourceTree = "<group>"; };
+		D4F4D5E6206CA1FA006DC308 /* English_Country_Garden.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = English_Country_Garden.mp3; sourceTree = "<group>"; };
+		D4F4D5EA206CA8B5006DC308 /* Fond_Memories.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = Fond_Memories.mp3; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -78,6 +94,7 @@
 		D4478A1B2060217A0090C8ED /* wwdcProj */ = {
 			isa = PBXGroup;
 			children = (
+				D4B37E21206C35A900A9277F /* Sounds */,
 				D45557792069701800A07280 /* Managers */,
 				D4478A1C2060217A0090C8ED /* AppDelegate.swift */,
 				D4478A242060217A0090C8ED /* GameViewController.swift */,
@@ -121,6 +138,21 @@
 				D455577A2069702600A07280 /* GameManager.swift */,
 			);
 			path = Managers;
+			sourceTree = "<group>";
+		};
+		D4B37E21206C35A900A9277F /* Sounds */ = {
+			isa = PBXGroup;
+			children = (
+				D4F4D5EA206CA8B5006DC308 /* Fond_Memories.mp3 */,
+				D4F4D5E6206CA1FA006DC308 /* English_Country_Garden.mp3 */,
+				D4F4D5E4206C9EEE006DC308 /* It_Happens.mp3 */,
+				D4F4D5E2206C9B3D006DC308 /* Mr_Tea.mp3 */,
+				D4F4D5DE206C8D8C006DC308 /* backgroundSound.mp3 */,
+				D4B37E1D206C2EC400A9277F /* RocketLaunch.mp3 */,
+				D4B37E19206C2E9600A9277F /* GrabbedABook.mp3 */,
+				D4B37E1F206C2FF000A9277F /* TapSound.mp3 */,
+			);
+			path = Sounds;
 			sourceTree = "<group>";
 		};
 		D4F0A62B2065A11B004451C4 /* GameScene */ = {
@@ -192,9 +224,17 @@
 			buildActionMask = 2147483647;
 			files = (
 				D4478A282060217A0090C8ED /* Main.storyboard in Resources */,
+				D4B37E1E206C2EC500A9277F /* RocketLaunch.mp3 in Resources */,
+				D4F4D5E3206C9B3D006DC308 /* Mr_Tea.mp3 in Resources */,
+				D4F4D5DF206C8D8C006DC308 /* backgroundSound.mp3 in Resources */,
 				D45C93AA206AC9BD00C0A7B0 /* fireParticle.sks in Resources */,
 				D4478A2A2060217A0090C8ED /* Assets.xcassets in Resources */,
+				D4F4D5EB206CA8B5006DC308 /* Fond_Memories.mp3 in Resources */,
 				D4478A2D2060217A0090C8ED /* LaunchScreen.storyboard in Resources */,
+				D4B37E1A206C2E9700A9277F /* GrabbedABook.mp3 in Resources */,
+				D4F4D5E7206CA1FA006DC308 /* English_Country_Garden.mp3 in Resources */,
+				D4F4D5E5206C9EEE006DC308 /* It_Happens.mp3 in Resources */,
+				D4B37E20206C2FF000A9277F /* TapSound.mp3 in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

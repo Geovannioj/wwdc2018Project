@@ -126,15 +126,13 @@ public class SecondScene: SKScene {
             let node = atPoint(touch.location(in: self))
             
             if node.name == "playBtn" {
+                GameManager.shared.playTapSound(node: self)
                 let rocktScene = RocketScene(size:self.size)
-                //print("linha 1")
                 rocktScene.scaleMode = scaleMode
-                //print("linha 2")
                 let showScene = SKTransition.doorway(withDuration: 1.5)
-                //print("linha 3")
                 self.view?.presentScene(rocktScene, transition: showScene)
-                //print("linha 4")
             } else if node.name == "nextBtn" {
+                GameManager.shared.playTapSound(node: self)
                 numberOfPhrase += 1
                 changeSentence()
 

@@ -3,8 +3,8 @@
 import PlaygroundSupport
 import SpriteKit
 
-// Load the SKScene from 'GameScene.sks'
 let sceneView = SKView(frame: CGRect(x:0 , y:0, width: 667, height: 375))
+
 
 let scene = FirstScene(size: sceneView.bounds.size) //{
     // Set the scale mode to scale to fit the window

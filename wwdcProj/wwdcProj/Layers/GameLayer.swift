@@ -144,7 +144,7 @@ class GameLayer: SKNode {
     }
     
     func createBooksForever() {
-        let wait = SKAction.wait(forDuration: TimeInterval(randomNumber(inRange: 1...2)))
+        let wait = SKAction.wait(forDuration: TimeInterval(1.25))
         let createBookAction = SKAction.run {
             self.createBook()
         }
@@ -249,5 +249,10 @@ class GameLayer: SKNode {
     }
     func rotateCharacter(characterSprite: SKSpriteNode, direction: CGPoint) {
         characterSprite.zRotation = CGFloat(atan2(Double(direction.y), Double(direction.x)))
+    }
+    func playGrabbedBookSound() {
+        let playSoundAction = SKAction.playSoundFileNamed("GrabbedABook.mp3", waitForCompletion: true)
+        self.character.run(playSoundAction)
+        
     }
 }

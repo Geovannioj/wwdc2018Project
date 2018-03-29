@@ -17,7 +17,7 @@ class GameScene: SKScene {
     var hudlayer: HudLayer!
     var gameOverScene: GameOverScene!
     var lastTouchLocation: CGPoint?
-
+    var musicNode: SKNode!
     
     
     override init(size: CGSize) {
@@ -25,7 +25,7 @@ class GameScene: SKScene {
         //setting up the layers
         self.setUpLayers(size: size)
         self.setUpGameScenePhysics()
-        
+        GameManager.shared.startMusic(musicName: "backgroundSound.mp3", node: gameLayer.character)
 
 
     }
@@ -100,30 +100,33 @@ class GameScene: SKScene {
     }
     
     func checkGameOver(countDown: Int, score: Int) {
-        if countDown == 0 {
-            if score >= 30 {
+        //if countDown == 0 {
+            if countDown >= 0 && score >= 30   {
                 print("Parabéns você venceu")
                 GameManager.shared.won = true
                 gameOverScene.chooseBackGround(won: GameManager.shared.won,
                                                size: size)
+                
+                GameManager.shared.restartResults()
+                gameLayer.character.removeAllChildren()
+                self.removeFromParent()
                 let showScene = SKTransition.doorway(withDuration: 1.5)
                 self.view?.presentScene(gameOverScene, transition: showScene)
-                GameManager.shared.restartResults()
-                self.removeFromParent()
                 
-                
-            } else {
+            } else if countDown == 0 && score < 30{
                 print("Não foi hoje, tente mais!")
                 GameManager.shared.won = false
                 gameOverScene.chooseBackGround(won: GameManager.shared.won,
                                                size: size)
                 let showScene = SKTransition.doorway(withDuration: 1.5)
-                self.view?.presentScene(gameOverScene, transition: showScene)
+                gameLayer.character.removeAllChildren()
                 GameManager.shared.restartResults()
                 self.removeFromParent()
+                self.view?.presentScene(gameOverScene, transition: showScene)
+                
             }
             
-        }
+       // }
     }
     
     func checkBooksGotten(result: Int) {
@@ -145,4 +148,5 @@ class GameScene: SKScene {
                       score: GameManager.shared.score)
         
     }
+    
 }

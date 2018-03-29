@@ -31,11 +31,13 @@ class GameOverScene: SKScene {
             background.position = CGPoint(x: size.width/2, y: size.height/2)
             background.zPosition = -10
             addChild(background)
+            GameManager.shared.startMusic(musicName: "Fond_Memories.mp3", node: background)
         } else {
             background = SKSpriteNode(imageNamed: "TryAgainBoard")
             background.position = CGPoint(x: size.width/2, y: size.height/2)
             background.zPosition = -10
             addChild(background)
+            GameManager.shared.startMusic(musicName: "It_Happens.mp3", node: background)
         }
         
     }
@@ -71,6 +73,7 @@ class GameOverScene: SKScene {
         self.view?.presentScene(playScene, transition: showScene)
         self.removeFromParent()
     }
+    
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         for touch in touches {

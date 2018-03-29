@@ -23,11 +23,11 @@ public class GameScene: SKScene {
     override public init(size: CGSize) {
         super.init(size: size)
         //setting up the layers
+       
         self.setUpLayers(size: size)
         self.setUpGameScenePhysics()
-        
-
-
+        self.playBackgroundMusic()
+    
     }
 
     required public init?(coder aDecoder: NSCoder) {
@@ -76,7 +76,7 @@ public class GameScene: SKScene {
         }
         
     }
-    
+     
     override public func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
        
         
@@ -109,6 +109,7 @@ public class GameScene: SKScene {
                 let showScene = SKTransition.doorway(withDuration: 1.5)
                 self.view?.presentScene(gameOverScene, transition: showScene)
                 GameManager.shared.restartResults()
+                self.removeAction(forKey:"playMusic")
                 self.removeFromParent()
                 
                 
@@ -129,6 +130,7 @@ public class GameScene: SKScene {
     func checkBooksGotten(result: Int) {
         
     }
+
     override public func update(_ currentTime: TimeInterval) {
         
         gameLayer.updateTimeVariation(currentTime: currentTime)
@@ -145,5 +147,10 @@ public class GameScene: SKScene {
                       score: GameManager.shared.score)
         
     }
-}
+    func playBackgroundMusic() {
+        let musicAction = SKAction.playSoundFileNamed("IfIHadaChicken.mp3", waitForCompletion: true)
+        
+        self.run(musicAction, withKey: "playMusic")
+    }
 
+}

@@ -30,6 +30,7 @@ class SecondScene: SKScene {
        // setTextActions()
         setNextBtn()
         setPlayBtn()
+        GameManager.shared.startMusic(musicName: "English_Country_Garden.mp3", node: self)
   
     }
     
@@ -123,9 +124,12 @@ class SecondScene: SKScene {
             let node = atPoint(touch.location(in: self))
             
             if node.name == "playBtn" {
+                GameManager.shared.playTapSound(node: self)
+                self.removeAllChildren()
                 changeScene()
             } else if node.name == "nextBtn" {
                 numberOfPhrase += 1
+                GameManager.shared.playTapSound(node: self)
                 changeSentence()
 
             }
@@ -286,6 +290,7 @@ class SecondScene: SKScene {
             
         }
     }
+    
     
     override func update(_ currentTime: TimeInterval) {
         if numberOfPhrase == 14 {
