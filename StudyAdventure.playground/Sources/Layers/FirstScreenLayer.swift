@@ -40,10 +40,11 @@ public class FirstScreenLayer: SKNode {
     
     /**
      Function that sets up the background image of the main scene
+     - parameter size: size of the screen
      */
     
     func setUpbackgroundImg(size: CGSize) {
-       
+        
         background = SKSpriteNode(imageNamed:"FirstScreen")
         background.position = CGPoint(x:size.width/2, y:size.height/2)
         background.zPosition = -10
@@ -79,6 +80,7 @@ public class FirstScreenLayer: SKNode {
     
     /**
      Function that sets up the clounds in the firstScreen
+     - parameter size: size of the screen
      */
     func setUpClouds(size: CGSize) {
         

@@ -15,12 +15,13 @@ public class HudLayer: SKNode {
     
     var scoreLabel: SKLabelNode!
     var resultScore: SKLabelNode!
-    
     var timeLabel: SKLabelNode!
     var countDownLabel: SKLabelNode!
     var startLabel: SKLabelNode!
     
-    public init(size: CGSize) {
+    //MARK:- Constructor
+    
+    init(size: CGSize) {
         super.init()
         setUpAllLabels(size: size)
         animateStartLabel()
@@ -31,6 +32,7 @@ public class HudLayer: SKNode {
         fatalError("init(coder:) has not been implemented")
     }
     
+    //MARK:- timer init
     func startTimer() {
         let startTimerAction = GameManager.shared.TimerWithActions()
         self.run(startTimerAction)
@@ -63,7 +65,7 @@ public class HudLayer: SKNode {
         
         let sequence = SKAction.sequence([action,removeAction])
         startLabel.run(sequence)
-    
+        
         
     }
     func setResultScore(size: CGSize) {

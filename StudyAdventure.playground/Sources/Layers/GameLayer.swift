@@ -19,27 +19,31 @@ public class GameLayer: SKNode {
     var velocity = CGPoint.zero
     var characterMove: SKAction!
     var screenSize: CGSize!
-    let safeArea: CGFloat = 50.0
+    let safeArea: CGFloat = 80.0
     
     //Mark:- Constructor
-    public init(size: CGSize) {
+    init(size: CGSize) {
         super.init()
         self.screenSize = size
-        animateTextures()
+        addCharacterTextures()
         self.putCharacterInScreen(size: size)
         //self.setBricks(size: size)
         createBooksForever()
         setUpBackground(size: size)
-    
-     
+        
+        
     }
     
     required public init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     
-    //MARK: Class methods
+    //MARK:- Nodes' set up
     
+    /**
+     Function to set up the background node
+     - parameter size: size of the screen
+     */
     func setUpBackground(size: CGSize) {
         let background = SKSpriteNode(imageNamed: "GameSceneBackGround")
         background.zPosition = -100
@@ -47,15 +51,22 @@ public class GameLayer: SKNode {
         addChild(background)
     }
     
+    /**
+     Function that sets up the character, puting it into the screen
+     - parameter size: size of the screen
+     */
     func putCharacterInScreen(size: CGSize) {
         character = SKSpriteNode(imageNamed: "character1")
         character.name = "character"
         setCharacterPhysics(character: character)
         character.position = CGPoint(x: size.width/2, y: size.height/2)
         addChild(character)
- 
+        
     }
-    
+    /**
+     Function that sets the character's physic
+     - parameter character: character node to set the physics
+     */
     func setCharacterPhysics(character: SKSpriteNode) {
         character.physicsBody = SKPhysicsBody(texture: character.texture!, size: character.size)
         character.physicsBody?.isDynamic = true
@@ -64,6 +75,14 @@ public class GameLayer: SKNode {
         character.physicsBody?.contactTestBitMask = UInt32(EnumBitmaskCategory.book.rawValue)
     }
     
+    //MARK:- Game mechanic
+    
+    /**
+     Function that moves the character through the screen
+     
+     - parameter sprite: node to be moved( the charcter)
+     - parameter velocity: speed to move the node
+     */
     func moveCharacter(sprite: SKSpriteNode, velocity: CGPoint) {
         
         let amountToMove = CGPoint(x: velocity.x * CGFloat(timeVariation),
@@ -76,6 +95,20 @@ public class GameLayer: SKNode {
         rotateCharacter(characterSprite: character, direction: velocity)
     }
     
+    /**
+     Function that rotates the character's node towards the touch location
+     - parameter characterSprite: character's node
+     - parameter direction:  direction to rotate the character's node
+     */
+    func rotateCharacter(characterSprite: SKSpriteNode, direction: CGPoint) {
+        characterSprite.zRotation = CGFloat(atan2(Double(direction.y), Double(direction.x)))
+    }
+    
+    /**
+     Function that moves the character towards the touch location
+     - parameter node: character's node
+     - parameter location: location of the touch
+     */
     func moveTowardTap(node: SKSpriteNode, location: CGPoint) {
         animateTextureChange()
         let moveVector = CGPoint(x: (location.x - node.position.x),
@@ -89,7 +122,11 @@ public class GameLayer: SKNode {
         velocity = CGPoint(x: direction.x * movePointsPerSecond,
                            y: direction.y * movePointsPerSecond)
     }
-    func animateTextures() {
+    
+    /**
+     Function that adds the character's texture to an array
+     */
+    func addCharacterTextures() {
         var textures:[SKTexture] = []
         for i in 1...3 {
             textures.append(SKTexture(imageNamed: "character\(i)"))
@@ -102,6 +139,9 @@ public class GameLayer: SKNode {
         characterMove = SKAction.animate(with: textures, timePerFrame: 0.1)
     }
     
+    /**
+     Function that gets the textures in the textures array and animate them
+     */
     func animateTextureChange() {
         
         if character.action(forKey: "animation") == nil {
@@ -111,15 +151,27 @@ public class GameLayer: SKNode {
         }
     }
     
+    /**
+     Function that stops the character's texture change,
+     this way the character seems to be stopped on the screen
+     */
     func stopTextureChangesAnimation() {
         character.removeAction(forKey: "animation")
     }
+    
+    /**
+     Function that creates the animation
+     to rotate the books on the screen
+     */
     func rotateBookAction (node: SKSpriteNode) {
         let rotate = SKAction.rotate(byAngle: 0.3, duration: 1.0)
         let sequence = SKAction.sequence([rotate, rotate.reversed()])
         node.run(SKAction.repeatForever(sequence))
     }
     
+    /**
+     Function that deals with the book's creation and getting away of the screen.
+     */
     func createBook() {
         let book = SKSpriteNode(imageNamed: "Book")
         book.position = CGPoint(x: randomNumber(inRange: 0...Int(screenSize.width - safeArea)),
@@ -143,8 +195,11 @@ public class GameLayer: SKNode {
         book.run(sequence)
     }
     
+    /**
+     Function that is responsable of keep creating the books on the screen
+     */
     func createBooksForever() {
-        let wait = SKAction.wait(forDuration: TimeInterval(1.5))
+        let wait = SKAction.wait(forDuration: TimeInterval(1.25))
         let createBookAction = SKAction.run {
             self.createBook()
         }
@@ -155,27 +210,26 @@ public class GameLayer: SKNode {
         
     }
     
+    /**
+     Function responsable for playing the sound when the character touches a book
+     */
+    func playGrabbedBookSound() {
+        let playSoundAction = SKAction.playSoundFileNamed("GrabbedABook.mp3", waitForCompletion: true)
+        self.character.run(playSoundAction)
+        
+    }
+    
+    
     public func randomNumber<T : SignedInteger>(inRange range: ClosedRange<T> = 1...6) -> T {
         let length = Int64(range.upperBound - range.lowerBound + 1)
         let value = Int64(arc4random()) % length + Int64(range.lowerBound)
         return T(value)
     }
     
-    func setBricks(size: CGSize) {
-        let brick1 = SKSpriteNode(imageNamed: "BrickBlock")
-        brick1.name = "brick1"
-        brick1.position = CGPoint(x: size.width * 0.5, y: size.height * 0.3)
-        brick1.zPosition = -10
-        addChild( brick1)
-        
-        
-        let brick3 = SKSpriteNode(imageNamed: "BrickBlock")
-        brick3.name = "brick3"
-        brick3.position = CGPoint(x: size.width * 0.5, y: size.height * 0.7)
-        brick3.zPosition = -10
-        addChild( brick3)
-        
-    }
+    /**
+     Function that checks the bounds of the screen
+     - parameter size: screen's size
+     */
     func checkBounds(size: CGSize) {
         let bottomLeft = CGPoint.zero
         let topRight = CGPoint(x: size.width, y: size.height)
@@ -206,6 +260,11 @@ public class GameLayer: SKNode {
         }
     }
     
+    /**
+     Function responsable for showing the achievements of the screen
+     - parameter result: amount of books gotten
+     - parameter size: screen's size
+     */
     func showAchievement(result: Int, size: CGSize) {
         let uiKit = "UIKitLbl"
         let spriteKit = "SpriteKitLbl"
@@ -224,6 +283,12 @@ public class GameLayer: SKNode {
         
     }
     
+    /**
+     Function that shows the specific achievement on the screen,
+     what framework was learned
+     - parameter nodeName: SKSpriteNode achievement to be shown on the screen
+     - parameter size: Screen's size
+     */
     func showCongratulationSprite(nodeName: String, size: CGSize) {
         let textNode = SKSpriteNode(imageNamed: nodeName)
         textNode.position = CGPoint(x: size.width/2, y: size.height/2)
@@ -238,6 +303,11 @@ public class GameLayer: SKNode {
         textNode.run(sequence)
     }
     
+    //MARK:- TO DO
+    /**
+     Function responsable for updating the
+     - parameter currentTime: time to check the
+     */
     func updateTimeVariation(currentTime: TimeInterval) {
         if lastCallToUpdate > 0 {
             timeVariation = currentTime - lastCallToUpdate
@@ -246,14 +316,6 @@ public class GameLayer: SKNode {
         }
         
         lastCallToUpdate = currentTime
-    }
-    func rotateCharacter(characterSprite: SKSpriteNode, direction: CGPoint) {
-        characterSprite.zRotation = CGFloat(atan2(Double(direction.y), Double(direction.x)))
-    }
-    func playGrabbedBookSound() {
-        let playSoundAction = SKAction.playSoundFileNamed("GrabbedABook.mp3", waitForCompletion: true)
-        character.run(playSoundAction)
-        
     }
 }
 

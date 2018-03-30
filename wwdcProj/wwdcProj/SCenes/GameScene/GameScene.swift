@@ -132,7 +132,7 @@ class GameScene: SKScene {
      */
     func checkGameOver(countDown: Int, score: Int) {
             if countDown >= 0 && score >= 30   {
-                let waitToShowLastFrameworkLearned = SKAction.wait(forDuration: 1.5)
+                let waitToShowLastFrameworkLearned = SKAction.wait(forDuration: 1.2)
                 let changeSceneBlock = SKAction.run({
                     self.setGameOverParameters(won: true)
                 })

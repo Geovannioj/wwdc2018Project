@@ -177,11 +177,8 @@ class GameLayer: SKNode {
         book.position = CGPoint(x: randomNumber(inRange: 0...Int(screenSize.width - safeArea)),
                                 y: randomNumber(inRange: 0...Int(screenSize.height - safeArea)))
         book.name = "book"
-        book.physicsBody = SKPhysicsBody(texture: book.texture!, size: book.size)
-        book.physicsBody?.isDynamic = true
-        book.physicsBody?.categoryBitMask = UInt32(EnumBitmaskCategory.book.rawValue)
-        book.physicsBody?.collisionBitMask = UInt32(EnumBitmaskCategory.character.rawValue)
-        book.physicsBody?.contactTestBitMask = UInt32(EnumBitmaskCategory.character.rawValue)
+        
+        setBookPhysicsBody(book: book)
         addChild(book)
         
         
@@ -195,6 +192,17 @@ class GameLayer: SKNode {
         book.run(sequence)
     }
     
+    /**
+     Function to set the book's physicsBody
+     - parameter book: node of the book.
+     */
+    func setBookPhysicsBody(book: SKSpriteNode) {
+        book.physicsBody = SKPhysicsBody(texture: book.texture!, size: book.size)
+        book.physicsBody?.isDynamic = true
+        book.physicsBody?.categoryBitMask = UInt32(EnumBitmaskCategory.book.rawValue)
+        book.physicsBody?.collisionBitMask = UInt32(EnumBitmaskCategory.character.rawValue)
+        book.physicsBody?.contactTestBitMask = UInt32(EnumBitmaskCategory.character.rawValue)
+    }
     /**
      Function that is responsable of keep creating the books on the screen
      */

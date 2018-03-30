@@ -132,6 +132,10 @@ class RocketScene: SKScene {
         let actionSound = SKAction.playSoundFileNamed("RocketLaunch.mp3", waitForCompletion: true)
         rocket.run(actionSound)
     }
+    
+    /**
+     Function that plays the countdown sound
+     */
     func playCountDownBip() {
         let bipAction = SKAction.playSoundFileNamed("Bip.mp3", waitForCompletion: true)
         self.run(bipAction)

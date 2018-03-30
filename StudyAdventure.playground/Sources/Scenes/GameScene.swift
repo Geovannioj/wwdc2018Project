@@ -17,35 +17,38 @@ public class GameScene: SKScene {
     var hudlayer: HudLayer!
     var gameOverScene: GameOverScene!
     var lastTouchLocation: CGPoint?
-
+    var musicNode: SKNode!
+    let backGroundMusicName = "backgroundSound.mp3"
     
-    
+    //MARK:- Constructor
     override public init(size: CGSize) {
         super.init(size: size)
-        //setting up the layers
-       
         self.setUpLayers(size: size)
         self.setUpGameScenePhysics()
-        self.playBackgroundMusic()
-    
+        GameManager.shared.startMusic(musicName: backGroundMusicName, node: gameLayer.character)
+        
+        
     }
-
+    
     required public init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     
     //MARK:- Class methods
-
-    override public func didMove(to view: SKView) {
-        
-        
-    }
+    
+    /**
+     Function that sets up the scene's physic
+     */
     func setUpGameScenePhysics() {
         self.physicsWorld.contactDelegate = self
         self.physicsWorld.gravity = CGVector(dx: 0, dy: 0  )
         self.physicsBody = SKPhysicsBody(edgeLoopFrom: self.frame)
     }
     
+    /**
+     Function that sets up the layers tha are needed on the GameScene class
+     - parameter size: screen's size
+     */
     func setUpLayers(size: CGSize) {
         self.gameLayer = GameLayer(size: size)
         self.hudlayer = HudLayer(size: size)
@@ -55,13 +58,18 @@ public class GameScene: SKScene {
         
     }
     
+    /**
+     Addition of the layers on the screen
+     */
     func addLayersToTheScene() {
         addChild(gameLayer)
-        
         addChild(hudlayer)
         
     }
     
+    /**
+     Function that connects the function MoveTowardTap of the gameLayer with the gameScene
+     */
     func sceneTouched(touchLocation: CGPoint) {
         gameLayer.moveTowardTap(node: gameLayer.character, location: touchLocation)
     }
@@ -76,14 +84,15 @@ public class GameScene: SKScene {
         }
         
     }
-     
+    
     override public func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
-       
+        
         
         sceneTouched(touchLocation: (touches.first?.location(in: self))!)
     }
     
     
+    //MARK:- TO do
     func movimentationFunction() {
         if let lastTouchLocation = lastTouchLocation {
             let diff = CGPoint(x:lastTouchLocation.x - gameLayer.character.position.x,
@@ -99,43 +108,51 @@ public class GameScene: SKScene {
         }
     }
     
+    /**
+     Function responsable to set gameover, removing the nodes
+     and restarting the countdown and game resulta
+     - parameter won: boolean tha indicates if the game was won or not
+     */
+    func setGameOverParameters(won: Bool) {
+        GameManager.shared.won = won
+        gameOverScene.chooseBackGround(won: GameManager.shared.won,
+                                       size: size)
+        
+        GameManager.shared.restartResults()
+        gameLayer.character.removeAllChildren()
+        self.removeFromParent()
+        let showScene = SKTransition.doorway(withDuration: 1.5)
+        self.view?.presentScene(gameOverScene, transition: showScene)
+    }
+    
+    /**
+     Function to check if it is gameover or not
+     - parameter countDown: the remain time
+     - parameter score: amount of books gotten
+     */
     func checkGameOver(countDown: Int, score: Int) {
-        if countDown == 0 {
-            if score >= 30 {
-                print("Parabéns você venceu")
-                GameManager.shared.won = true
-                gameOverScene.chooseBackGround(won: GameManager.shared.won,
-                                               size: size)
-                let showScene = SKTransition.doorway(withDuration: 1.5)
-                self.view?.presentScene(gameOverScene, transition: showScene)
-                GameManager.shared.restartResults()
-                self.removeAction(forKey:"playMusic")
-                self.removeFromParent()
-                
-                
-            } else {
-                print("Não foi hoje, tente mais!")
-                GameManager.shared.won = false
-                gameOverScene.chooseBackGround(won: GameManager.shared.won,
-                                               size: size)
-                let showScene = SKTransition.doorway(withDuration: 1.5)
-                self.view?.presentScene(gameOverScene, transition: showScene)
-                GameManager.shared.restartResults()
-                self.removeFromParent()
-            }
+        if countDown >= 0 && score >= 30   {
+            let waitToShowLastFrameworkLearned = SKAction.wait(forDuration: 1.5)
+            let changeSceneBlock = SKAction.run({
+                self.setGameOverParameters(won: true)
+            })
+            
+            let sequence = SKAction.sequence([waitToShowLastFrameworkLearned, changeSceneBlock])
+            self.run(sequence)
+            
+            
+        } else if countDown == 0 && score < 30{
+            
+            setGameOverParameters(won: false)
             
         }
     }
     
-    func checkBooksGotten(result: Int) {
-        
-    }
-
     override public func update(_ currentTime: TimeInterval) {
         
         gameLayer.updateTimeVariation(currentTime: currentTime)
         gameLayer.moveCharacter(sprite: gameLayer.character,
-                   velocity: gameLayer.velocity)
+                                velocity: gameLayer.velocity)
         
         movimentationFunction()
         gameLayer.checkBounds(size: size)
@@ -147,10 +164,4 @@ public class GameScene: SKScene {
                       score: GameManager.shared.score)
         
     }
-    func playBackgroundMusic() {
-        let musicAction = SKAction.playSoundFileNamed("IfIHadaChicken.mp3", waitForCompletion: true)
-        
-        self.run(musicAction, withKey: "playMusic")
-    }
-
 }
